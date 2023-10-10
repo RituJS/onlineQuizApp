@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@100;700&display=swap');
+/* font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.container{
+  width: 1440px;
+  margin: 0 auto;
+}
+
+.app{
+  background-image: url("../public/Background.jpg");
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position: center;
+  margin: 0 auto;  
+  min-height: 98.5vh;
+  border: 1px solid #4390b4;
+}
+
+/* ===== HEADER COMPONENT ============ */
+.header{
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.title{
+  font-size: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  color: #4390b4;
+}
+
+
+/* ==========Footer CSS========== */
+
+.footer {
+  color: #000000;
+  padding: 5px;
+  background: linear-gradient( to right,  #d8edf8, #4ac0e1);
+  text-align: center;
+}
+
+.footer a{
+  text-decoration: none;   
+  padding: 5px;
+  }
+
+.footer a:hover {
+  color: wheat;
+  border-bottom: 2px solid wheat;
+}
+
