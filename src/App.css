@@ -62,3 +62,82 @@ align-items: center;
   border-bottom: 2px solid wheat;
 }
 
+/* ========== Home page CSS========== */
+
+.home-content{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 50px;
+}
+
+.home-content .banner-img{
+  width: 55%;  
+  padding: 20px;
+}
+
+.banner-img img{
+  width: 100%;
+  object-fit: cover; 
+}
+
+.home-content .quiz-setup{
+  width: 45%;
+  /* margin-top: 100px; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 600;
+  color:#4390b4;
+}
+
+.home-content .add-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 100%;    
+}
+.add-inputs .input-field{
+  margin-top: 20px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:768px){
+
+  .home-content{
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.home-content .banner-img{
+  width: 80%;  
+  margin: 0px;
+  padding: 8px;
+ 
+}
+
+.banner-img img{
+  width: 100%;
+  object-fit: cover; 
+}
+
+.home-content .quiz-setup{
+  width: 90%;
+  
+}
+
+}
