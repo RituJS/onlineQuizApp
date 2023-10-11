@@ -63,7 +63,6 @@ align-items: center;
 }
 
 /* ========== Home page CSS========== */
-
 .home-content{
   display: flex;
   justify-content: space-around;

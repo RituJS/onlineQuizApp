@@ -1,43 +1,62 @@
-const Category =[
+const Categories = [
     {
         category: "General Knowledge",
-        value: 1
-    },
-    {
-        category: "Sports",
-        value: 2
+        value: 9,
     },
     {
         category: "Books",
-        value: 3
+        value: 10
     },
     {
-        category: "Geography",
-        value:4
+        category: "Films",
+        value: 11
     },
     {
-        category: "History",
-        value: 5
+        category: "Music",
+        value: 12
+
     },
     {
-        category: "Politics",
-        value: 6
+        category: "Musicals and Theaters",
+        value: 13
     },
+    {
+        category: "Television",
+        value: 14
+    },
+
     {
         category: "Science and Nature",
-        value: 7
+        value: 17
     },
     {
         category: "Computer",
-        value: 8
+        value: 18
     },
     {
         category: "Mathematics",
-        value: 9
+        value: 19
     },
     {
         category: "Mythology",
-        value: 10
+        value: 20
+    },
+    {
+        category: "Sports",
+        value: 21
+    },
+    {
+        category: "Geography",
+        value: 22
+    },
+    {
+        category: "History",
+        value: 23
+    },
+    {
+        category: "Politics",
+        value: 24
     },
 ];
-export default Category;
+
+export default Categories;
