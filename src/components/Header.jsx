@@ -4,12 +4,11 @@ import "../../src/App.css"
 
 const Header = () => {
   return (
-   <>
-   <div className="header">
-   <Link to="/" className='title'> Online Quiz </Link>
-   {/* <hr className='hr-line'/> */}
-   </div>
-   </>
+    <>
+      <div className="header">
+        <Link to="/" className='title'> Online Quiz </Link>
+      </div>
+    </>
   )
 }
 
