@@ -40,7 +40,7 @@ const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correct
 
     const handleCheck = (i) => {
         setSelected(i);
-        if(i === correctAns) setScore(score + 1);
+        if(i === correctAns) setScore(prevScore => prevScore + 1);
         setError(false)
     }
 

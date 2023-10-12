@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Quiz from './pages/Quiz';
 import Result from './pages/Result';
+import LeaderBoard from './components/LeaderBoard';
 
 function App() {
   const [name, setName] = useState("");
@@ -51,7 +52,9 @@ function App() {
           setQuestions={setQuestions}          
           />} />
 
-          <Route path="/result" element={<Result />} />
+<Route path="/result" element={<Result name={name} score={score} />} />
+
+          <Route path="/leaderboard" element={<LeaderBoard />} />
         </Routes>
 
       </div>
