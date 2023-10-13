@@ -28,6 +28,8 @@ export const QuizProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [questions, setQuestions] = useState('');
   const [score, setScore] = useState(0);
+  const [category, setCategory] = useState("")
+
    const fetchQuiz = async (category = "", level = "") => {
         try {
           const response = await fetch(`https://opentdb.com/api.php?amount=10${category && `&category=${category}`}${level && `&level=${level}`}&type=multiple`);
@@ -46,7 +48,7 @@ export const QuizProvider = ({ children }) => {
       };
 
   return (
-    <QuizContext.Provider value={{ name, setName, questions, setQuestions, score, setScore, fetchQuiz }}>
+    <QuizContext.Provider value={{ name, setName, questions, setQuestions, score, setScore, category, setCategory, fetchQuiz }}>
       {children}
     </QuizContext.Provider>
   );

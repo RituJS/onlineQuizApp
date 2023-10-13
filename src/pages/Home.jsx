@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import bannerImg from "../assets/images/question2.png"
+import bannerImg from "../assets/images/quiz-banner.png"
 import "../../src/App.css"
 import { Button, MenuItem, TextField } from '@mui/material'
 import Categories from '../Database/Category'
@@ -11,10 +11,9 @@ const Home = (
   // { name, setName, fetchQuiz, setQuestions }
   ) => {
 
-    const { name, setName, fetchQuiz, setQuestions } = useQuizContext();
+    const { name, setName, fetchQuiz, setQuestions, category, setCategory } = useQuizContext();
 
-  // const [name, setName] = useState("")
-  const [category, setCategory] = useState("")
+  // const [category, setCategory] = useState("")
   const [level, setLevel] = useState("")
   const [error, setError] = useState(false)
 
