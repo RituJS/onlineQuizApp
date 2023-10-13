@@ -1,27 +1,26 @@
-// Result.js
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useQuizContext } from '../api/QuizContext';
 
-const Result = ({ name, score }) => {
+const Result = (() => {
+  const { name, score } = useQuizContext()
   const navigate = useNavigate();
 
-  console.log("============name score", name, score)
-  
-
- 
+  //Store the score in localStorage
   useEffect(() => {
-   if(!name) {
-    navigate("/");
-   }   
-  }, [name]);
-  
+    if (name && score) {
+      const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+      leaderboardData.push({ name, score });
+      localStorage.setItem('leaderboard', JSON.stringify(leaderboardData));
+    }
+  }, []);
 
   return (
     <div className="result-page">
-      <h2>Your Score: {score}</h2>
-      {/* <button onClick={() => navigate('/leaderboard')}>View Leaderboard</button> */}
+      <h2>{name}'s Score: {score}</h2>
+      <button onClick={() => navigate('/leaderboard')}>View Leaderboard</button>
     </div>
   );
-};
+});
 
 export default Result;

@@ -4,9 +4,14 @@ import "../../src/App.css"
 import { Button, MenuItem, TextField } from '@mui/material'
 import Categories from '../Database/Category'
 import { useNavigate } from 'react-router-dom'
+import { useQuizContext } from '../api/QuizContext'
 
 
-const Home = ({ name, setName, fetchQuiz }) => {
+const Home = (
+  // { name, setName, fetchQuiz, setQuestions }
+  ) => {
+
+    const { name, setName, fetchQuiz, setQuestions } = useQuizContext();
 
   // const [name, setName] = useState("")
   const [category, setCategory] = useState("")
@@ -15,12 +20,13 @@ const Home = ({ name, setName, fetchQuiz }) => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!category || !level || !name) {
       setError(true);
       return;
     } else setError(false)
-    fetchQuiz(category, level);
+   const allQuestion = await fetchQuiz(category, level);
+   setQuestions(allQuestion)
     navigate("/quiz");
   }
 
@@ -79,13 +85,8 @@ const Home = ({ name, setName, fetchQuiz }) => {
             <Button variant='contained' color='primary' size='large' className="input-field" onClick={handleSubmit}>
               Start Quiz
             </Button>
-
-
           </div>
-
-
         </div>
-
         <div className="banner-img">
           <img src={bannerImg} alt="Banner-Image" />
         </div>

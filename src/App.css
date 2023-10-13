@@ -14,7 +14,8 @@ a{
 }
 
 .container{
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -126,7 +127,7 @@ align-items: center;
   margin-top: 20px;
 }
 
-/* ================Question component =============== */
+/* ================Question component CSS =============== */
 .question-container{
   width : 100%;
   display: flex;
@@ -180,7 +181,80 @@ margin: 10px;
   justify-content: space-around;
 }
 
+/* ================ Result page CSS ============= */
+.result-page {
+  text-align: center;
+  margin-top: 50px;
+  font-family: Arial, sans-serif;
+}
 
+.result-page h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.result-page button {
+  background-color:#4ac0e1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.result-page button:hover {
+  background-color:#4390b4;
+}
+
+/* ============= LeaderBoard CSS =================== */
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.leaderboard {
+  text-align: center;
+  margin-top: 50px;
+  font-family: poppins;
+  text-transform: uppercase;
+  color:#4390b4;
+}
+
+.leaderboard h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.leaderboard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.leaderboard ul li {
+  font-size: 18px;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  display: inline-block;
+  width: 80%;
+  transition: background-color 0.3s ease;
+  background-color: rgba(249, 249, 249, 0.9);
+}
+
+.leaderboard ul li:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.sticky-button {
+  margin-top: auto; 
+  padding: 20px; 
+}
 
 
 

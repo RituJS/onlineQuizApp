@@ -1,33 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { CircularProgress } from '@mui/material';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { useNavigate } from 'react-router-dom';
 import "../../src/App.css";
 import QuestionComp from '../components/QuestionComp';
+import { useQuizContext } from '../api/QuizContext'
 
-const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
+const Quiz = () => {
+  const { name, questions, score, setScore, setQuestions } = useQuizContext();
   const [currentQues, setCurrentQues] = useState(0);
   const [options, setOptions] = useState();
-  const navigate = useNavigate(); // Initialize navigate from useNavigate hook
-
-  // useEffect(() => {
-  //   const handleBeforeUnload = (event) => {
-  //     const message = "If you refresh the page, your quiz progress will be lost, and the score will reset to 0.";
-  //     event.returnValue = message;
-  //     localStorage.setItem('score', score);     
-  //     return message;      
-  //   };
-  //   window.addEventListener('beforeunload', handleBeforeUnload);
-   
-  //   // remove the event listener when the component is unmounted
-  //   return () => {
-  //     window.removeEventListener('beforeunload', handleBeforeUnload);
-  //   };
-  // }, []); // Empty array means this effect runs once when the component is mounted
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("Current Score: ", score);
-  }, [score]);
+    // Reset the score to 0 when the component is mounted
+    setScore(0);
 
+    // Show an alert when the user tries to refresh the page
+    const handleBeforeUnload = (event) => {
+      const confirmationMessage = "Refreshing the page will reset your score. Are you sure you want to proceed?";
+      event.returnValue = confirmationMessage;
+      return confirmationMessage;
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [setScore]);
+
+  // Navigate to home when refreshed the page and questions not received
+  useEffect(() => {
+    if (!questions) {
+      navigate('/');
+    }
+  }, [questions, navigate]);
+
+  // Reset the score to 0 when the component is mounted
+  useEffect(() => {
+    setScore(0);
+  }, []);
+
+
+   // Shuffle options whenever questions or current question change
   useEffect(() => {
     setOptions(questions && handleShuffle([questions[currentQues]?.correct_answer, ...questions[currentQues]?.incorrect_answers]));
   }, [questions, currentQues]);
@@ -35,7 +48,7 @@ const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
   const handleShuffle = (shuffleOpt) => {
     return shuffleOpt.sort(() => Math.random() - 0.5);
   };
-console.log("score=", score)
+  
 
   return (
     <div className='quiz-page'>
@@ -47,7 +60,7 @@ console.log("score=", score)
               <span>Category : {questions[currentQues].category}</span>
               <span>Score : {score}</span>
             </div>
-            <QuestionComp 
+            <QuestionComp
               currentQues={currentQues}
               setCurrentQues={setCurrentQues}
               questions={questions}
@@ -55,7 +68,7 @@ console.log("score=", score)
               correctAns={questions[currentQues]?.correct_answer}
               score={score}
               setScore={setScore}
-              setQuestions={setQuestions}      
+              setQuestions={setQuestions}
             />
           </>
         ) : (

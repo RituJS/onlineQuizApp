@@ -6,28 +6,51 @@ import '../../src/App.css';
 const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correctAns, score, setScore, setQuestions }) => {
     const [selected, setSelected] = useState();
     const [error, setError] = useState(false);
-    const [timer, setTimer] = useState(300); // 300 seconds = 5 minutes
-
+    const [timers, setTimers] = useState([]); // Array to store timers for each question
     const navigate = useNavigate();
 
-    // useEffect to update timer every second
+    // This useEffect runs whenever questions change or component mount.
+    useEffect(() => {
+        const initialTimers = questions.map(() => 60); // 60 seconds (1 minute) for each question
+        setTimers(initialTimers);
+    }, [questions]);
+
+    // update timers every second
     useEffect(() => {
         const interval = setInterval(() => {
-            if (timer > 0) {
-                setTimer(timer - 1);
-            } else {
-                // Timer has reached 0, navigate to the result page or handle it as needed
-                clearInterval(interval);
-                navigate('/result');
-            }
+            const updatedTimers = timers.map((timer, index) => {
+                if (index === currentQues) {
+                    if (timer > 0) {
+                        return timer - 1;
+                    } else {
+                        // Timer for the current question has reached 0, move to the next question
+                        clearInterval(interval);
+                        if (currentQues < 9) {
+                            setCurrentQues(currentQues + 1);
+                            setSelected();
+                        } else {
+                            // If all questions are answered, navigate to the result page
+                            navigate('/result');
+                        }
+                        return timer; // Return the timer value for the current question
+                    }
+                }
+                return timer; // Return the timer value for other questions
+            });
+
+            setTimers(updatedTimers);
         }, 1000);
 
         // Clear interval on component unmount
         return () => {
             clearInterval(interval);
         };
-    }, [timer, navigate]);
+    }, [currentQues, timers, navigate, setCurrentQues]);
 
+
+    //changing the color of the correct answer to green 
+    //else if  changing the color of the wrong answer to red 
+    // if the answer is wrong then color the correct answer with green color
     const handleSelect = (i) => {
         if (selected === i && selected === correctAns) {
             return 'select';
@@ -36,60 +59,67 @@ const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correct
         } else if (i === correctAns) {
             return 'select';
         }
-    };    
+    };
 
+    //increase the score if the answer is correct
     const handleCheck = (i) => {
         setSelected(i);
-        if(i === correctAns) setScore(prevScore => prevScore + 1);
-        setError(false)
-    }
+        if (i === correctAns) setScore(prevScore => prevScore + 1);
+        setError(false);
+    };
 
-    const handleNext = (() =>{
+    // handle the next button
+    const handleNext = () => {
         if (currentQues > 8) {
-            navigate("/result")
-            setScore(0);
+            navigate('/result');
         } else if (selected) {
-            setCurrentQues (currentQues + 1)
+            setCurrentQues(currentQues + 1);
             setSelected();
         } else {
-            setError ("Please select an option")
+            setError('Please select an option');
         }
-    })
+    };
 
-    const handleQuit = (() =>{})
+    //   handle the quit button
+    const handleQuit = () => {
+        setCurrentQues(0);
+        setQuestions([]);
+        setScore(0);
+    };
 
     return (
-        <div className='question-container'>
+        <div className="question-container">
             <h2>Question {currentQues + 1}</h2>
-            <p>Time Left: {Math.floor(timer / 60)}:{timer % 60 < 10 ? '0' : ''}{timer % 60}</p>
-            <div className='currentQues-content'>
+            <p>Time Left: {Math.floor(timers[currentQues] / 60)}:{timers[currentQues] % 60 < 10 ? '0' : ''}{timers[currentQues] % 60}</p>
+            <div className="currentQues-content">
                 <h2>{questions[currentQues].question}</h2>
-                <div className='option-content'>
+                <div className="option-content">
                     {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
                     {options &&
-                        options.map((i) => (
+                        options.map(i => (
                             <button
                                 key={i}
                                 onClick={() => handleCheck(i)}
                                 className={`single-option ${selected && handleSelect(i)}`}
+                                // if one option is selected then disable the rest options
                                 disabled={selected}
                             >
                                 {i}
                             </button>
                         ))}
                 </div>
-                <div className='quit-nextQues'>
+                <div className="quit-nextQues">
                     <Button
-                        variant='contained'
-                        color='secondary'
-                        size='large'
+                        variant="contained"
+                        color="secondary"
+                        size="large"
                         style={{ width: 185 }}
-                        href='/'
+                        href="/"
                         onClick={handleQuit}
                     >
                         Quit
                     </Button>
-                    <Button variant='contained' color='primary' size='large' style={{ width: 185 }} onClick={handleNext}>
+                    <Button variant="contained" color="primary" size="large" style={{ width: 185 }} onClick={handleNext}>
                         Next Question
                     </Button>
                 </div>
