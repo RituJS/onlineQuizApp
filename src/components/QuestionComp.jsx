@@ -2,13 +2,21 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 
+import { useQuizContext } from '../api/QuizContext';
 
-const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correctAns, setScore, setQuestions }) => {
+
+const QuestionComp = ({ options, correctAns }) => {
+    const { quizValue, updateQuizValue  } = useQuizContext();
+    const { name, currentQues, setCurrentQues, questions, setScore, setQuestions} = quizValue;
+
     const [selected, setSelected] = useState();
     const [error, setError] = useState(false);
     const [timers, setTimers] = useState([]); // Array to store timers for each question
     const navigate = useNavigate();
 
+    // console.log("option correctans===========", options, correctAns)
+
+    // console.log("name, ques=========quiz 2========", name, questions)
     // This useEffect runs whenever questions change or component mount.
     useEffect(() => {
         const initialTimers = questions.map(() => 60); // 60 seconds (1 minute) for each question
@@ -26,7 +34,7 @@ const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correct
                         // Timer for the current question has reached 0, move to the next question
                         clearInterval(interval);
                         if (currentQues < 9) {
-                            setCurrentQues(currentQues + 1);
+                            updateQuizValue({currentQues: currentQues + 1});
                             setSelected();
                         } else {
                             // If all questions are answered, navigate to the result page
@@ -51,6 +59,8 @@ const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correct
     //changing the color of the correct answer to green 
     //else if  changing the color of the wrong answer to red 
     // if the answer is wrong then color the correct answer with green color
+
+
     const handleSelect = (i) => {
         if (selected === i && selected === correctAns) {
             return 'select';
@@ -60,11 +70,13 @@ const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correct
             return 'select';
         }
     };
+    
 
     //increase the score if the answer is correct
     const handleCheck = (i) => {
         setSelected(i);
-        if (i === correctAns) setScore(prevScore => prevScore + 1);
+        if (i === correctAns) 
+        updateQuizValue({score: quizValue.score + 1});
         setError(false);
     };
 
@@ -73,7 +85,7 @@ const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correct
         if (currentQues > 8) {
             navigate('/result');
         } else if (selected) {
-            setCurrentQues(currentQues + 1);
+            updateQuizValue({currentQues: currentQues + 1});
             setSelected();
         } else {
             setError('Please select an option');
@@ -82,9 +94,9 @@ const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correct
 
     //   handle the quit button
     const handleQuit = () => {
-        setCurrentQues(0);
-        setQuestions([]);
-        setScore(0);
+        // updateQuizValue({currentQues: 0});
+        // setQuestions([]);
+        // setScore(0);
     };
 
     return (

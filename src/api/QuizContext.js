@@ -3,11 +3,21 @@ import React, { createContext, useContext, useState } from 'react';
 const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
-  const [name, setName] = useState('');
-  const [questions, setQuestions] = useState('');
-  const [score, setScore] = useState(0);
-  const [category, setCategory] = useState("")
-  const [currentQues, setCurrentQues] = useState(0);
+  const [quizValue, setQuizValue] = useState({
+    name: '',
+    questions: '',
+    score: 0,
+    category: '',
+    currentQues: 0
+  });
+
+  const updateQuizValue = ( updatedState ) => {
+    setQuizValue ( prevState => ({
+      ...prevState,
+      ...updatedState
+    }))
+  };
+
 
    const fetchQuiz = async (category = "", level = "") => {
         try {
@@ -26,9 +36,9 @@ export const QuizProvider = ({ children }) => {
         }
       };
 
-  return (
-    <QuizContext.Provider value={{ name, setName, questions, setQuestions, score, setScore, category, setCategory,currentQues, setCurrentQues, fetchQuiz }}>
-      {children}
+  return (  
+    <QuizContext.Provider value={{quizValue, updateQuizValue , fetchQuiz}}>
+    {children}
     </QuizContext.Provider>
   );
 };

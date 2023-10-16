@@ -13,7 +13,8 @@ const LeaderBoard = () => {
 
     // Iterate through the savedLeaderboard to find the highest score for each category
     savedLeaderboard.forEach(({ name, score, category }) => {
-      if (!highestScoresByCategory[category] || score > highestScoresByCategory[category].score) {
+      if (!highestScoresByCategory[category] || score > highestScoresByCategory[category].score) 
+      {
         highestScoresByCategory[category] = { name, score, category };
       }
     });

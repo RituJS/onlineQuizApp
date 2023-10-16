@@ -9,8 +9,8 @@ import bannerImg from "../assets/images/quiz-banner.png"
 
 
 const Home = () => {
-
-  const { name, setName, fetchQuiz, setQuestions, category, setCategory } = useQuizContext();
+  const { quizValue, updateQuizValue , fetchQuiz } = useQuizContext();
+  const { name, category} = quizValue;
   const [level, setLevel] = useState("")
   const [error, setError] = useState(false)
 
@@ -23,14 +23,13 @@ const Home = () => {
       return;
     } else setError(false);
     const allQuestion = await fetchQuiz(category, level);
-    setQuestions(allQuestion)
+    updateQuizValue({questions : allQuestion})
+    // setQuestions(allQuestion)
     navigate("/quiz");
   }
 
-
   return (
     <div className="home-content">
-
       <form onSubmit={handleSubmit} className="quiz-setup">
         <span className="quiz-setting"> Enter the information</span>
         <div className="add-inputs">
@@ -41,14 +40,14 @@ const Home = () => {
             label="Enter your Name"
             variant='outlined'
             className="input-field"
-            onChange={(event) => setName(event.target.value)} />
+            onChange={(event) => updateQuizValue({name: event.target.value})} />
 
           <TextField select
             label="Select Category"
             variant='outlined'
             className="input-field"
             value={category}
-            onChange={(event) => setCategory(event.target.value)}
+            onChange={(event) => updateQuizValue({category: event.target.value})}
           >
             {Categories.map((cat) => (
                 <MenuItem key={cat.category} value={cat.value}>

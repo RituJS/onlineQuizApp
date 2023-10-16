@@ -10,7 +10,9 @@ const getCategoryNameById = (categoryId) => {
 };
 
 const Result = () => {
-  const { name, score, category } = useQuizContext()
+
+  const { quizValue } = useQuizContext();
+  const { name, score, category} = quizValue;
   const navigate = useNavigate();
   const categoryName = getCategoryNameById(category);
 

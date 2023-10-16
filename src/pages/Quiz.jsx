@@ -6,14 +6,14 @@ import QuestionComp from '../components/QuestionComp';
 import { useQuizContext } from '../api/QuizContext'
 
 const Quiz = () => {
-  const { name, questions, score, setScore, setQuestions,currentQues, setCurrentQues } = useQuizContext();
-  
-  const [options, setOptions] = useState();
-  const navigate = useNavigate();
+  const { quizValue, updateQuizValue  } = useQuizContext();
+  const { name, questions, score, currentQues } = quizValue;  
+  const [ options, setOptions ] = useState();  
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     // Reset the score to 0 when the component is mounted
-    setScore(0);
+    updateQuizValue({score : 0});
 
     // Show an alert when the user tries to refresh the page
     const handleBeforeUnload = (event) => {
@@ -25,22 +25,16 @@ const Quiz = () => {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [setScore]);
+  }, []);
 
   // Navigate to home when refreshed the page and questions not received
   useEffect(() => {
     if (!questions) {
       navigate('/');
     }    
-  }, [questions, navigate]);
+  }, [questions]);
 
-  // Reset the score to 0 when the component is mounted
-  useEffect(() => {
-    setScore(0);
-  }, []);
-
-
-   // Shuffle options whenever questions or current question change
+  // Shuffle options whenever questions or current question change
   useEffect(() => {
     setOptions(questions && handleShuffle([questions[currentQues]?.correct_answer, ...questions[currentQues]?.incorrect_answers]));
   }, [questions, currentQues]);
@@ -61,14 +55,14 @@ const Quiz = () => {
               <span>Score : {score}</span>
             </div>
             <QuestionComp
-              currentQues={currentQues}
-              setCurrentQues={setCurrentQues}
-              questions={questions}
+              // currentQues={currentQues}
+              // setCurrentQues={setCurrentQues}
+              // questions={questions}
               options={options}
-              correctAns={questions[currentQues]?.correct_answer}
-              score={score}
-              setScore={setScore}
-              setQuestions={setQuestions}
+              correctAns={questions[currentQues].correct_answer}
+              // score={score}
+              // setScore={setScore}
+              // setQuestions={setQuestions}
             />
           </>
         ) : (
