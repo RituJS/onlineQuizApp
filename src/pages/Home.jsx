@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import bannerImg from "../assets/images/quiz-banner.png"
-import "../../src/App.css"
-import { Button, MenuItem, TextField } from '@mui/material'
-import Categories from '../Database/Category'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button, MenuItem, TextField } from '@mui/material'
+
+import Categories from '../Database/Category'
 import { useQuizContext } from '../api/QuizContext'
+
+import bannerImg from "../assets/images/quiz-banner.png"
 
 
 const Home = () => {
@@ -15,11 +16,12 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (!category || !level || !name) {
       setError(true);
       return;
-    } else setError(false)
+    } else setError(false);
     const allQuestion = await fetchQuiz(category, level);
     setQuestions(allQuestion)
     navigate("/quiz");
@@ -27,9 +29,9 @@ const Home = () => {
 
 
   return (
-
     <div className="home-content">
-      <div className="quiz-setup">
+
+      <form onSubmit={handleSubmit} className="quiz-setup">
         <span className="quiz-setting"> Enter the information</span>
         <div className="add-inputs">
           {/* {} curly braces used to add javascript expression (jsx). here if error is true then this error message will be shown */}
@@ -48,9 +50,7 @@ const Home = () => {
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           >
-
-            {
-              Categories.map((cat) => (
+            {Categories.map((cat) => (
                 <MenuItem key={cat.category} value={cat.value}>
                   {cat.category}
                 </MenuItem>
@@ -74,13 +74,13 @@ const Home = () => {
               Hard
             </MenuItem>
           </TextField>
-          <Button variant='contained' color='primary' size='large' className="input-field" onClick={handleSubmit}>
+          <Button type='submit' variant='contained' color='primary' size='large' className="input-field" >
             Start Quiz
           </Button>
         </div>
-      </div>
+      </form>
       <div className="banner-img">
-        <img src={bannerImg} alt="Banner-Image" />
+        <img src={bannerImg} alt="Banner" />
       </div>
     </div>
 

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useQuizContext } from '../api/QuizContext';
 import Categories from '../Database/Category'
 
@@ -8,7 +9,7 @@ const getCategoryNameById = (categoryId) => {
   return category ? category.category : 'Unknown Category';
 };
 
-const Result = (() => {
+const Result = () => {
   const { name, score, category } = useQuizContext()
   const navigate = useNavigate();
   const categoryName = getCategoryNameById(category);
@@ -28,6 +29,6 @@ const Result = (() => {
       <button onClick={() => navigate('/leaderboard')}>View Leaderboard</button>
     </div>
   );
-});
+};
 
 export default Result;

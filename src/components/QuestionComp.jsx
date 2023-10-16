@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../src/App.css';
+import { Button } from '@mui/material';
 
-const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correctAns, score, setScore, setQuestions }) => {
+
+const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correctAns, setScore, setQuestions }) => {
     const [selected, setSelected] = useState();
     const [error, setError] = useState(false);
     const [timers, setTimers] = useState([]); // Array to store timers for each question

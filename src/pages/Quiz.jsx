@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { CircularProgress } from '@mui/material';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../../src/App.css";
+import { CircularProgress } from '@mui/material';
+
 import QuestionComp from '../components/QuestionComp';
 import { useQuizContext } from '../api/QuizContext'
 
