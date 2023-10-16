@@ -6,8 +6,8 @@ import QuestionComp from '../components/QuestionComp';
 import { useQuizContext } from '../api/QuizContext'
 
 const Quiz = () => {
-  const { name, questions, score, setScore, setQuestions } = useQuizContext();
-  const [currentQues, setCurrentQues] = useState(0);
+  const { name, questions, score, setScore, setQuestions,currentQues, setCurrentQues } = useQuizContext();
+  
   const [options, setOptions] = useState();
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Quiz = () => {
   useEffect(() => {
     if (!questions) {
       navigate('/');
-    }
+    }    
   }, [questions, navigate]);
 
   // Reset the score to 0 when the component is mounted

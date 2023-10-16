@@ -59,7 +59,7 @@ import Home from './pages/Home';
 import Quiz from './pages/Quiz';
 import Result from './pages/Result';
 import LeaderBoard from './components/LeaderBoard';
-import { QuizProvider, useQuizContext } from './api/QuizContext';
+import { QuizProvider } from './api/QuizContext';
 
 function App() {
   return (

@@ -2,40 +2,42 @@
 /* font-family: 'Poppins', sans-serif;
 font-family: 'Roboto', sans-serif; */
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-.container{
+.container {
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
+
 }
 
-.app{
+.app {
   background-image: url("../public/Background.jpg");
-  background-size:cover;
-  background-repeat:no-repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
-  margin: 0 auto;  
+  margin: 0 auto;
   min-height: 98.5vh;
   border: 1px solid #4390b4;
 }
 
 /* ===== HEADER COMPONENT ============ */
-.header{
-display: flex;
-flex-direction: column;
-align-items: center;
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.title{
+
+.title {
   font-size: 40px;
   font-family: 'Roboto', sans-serif;
   font-weight: 600;
@@ -49,14 +51,14 @@ align-items: center;
 .footer {
   color: #000000;
   padding: 5px;
-  background: linear-gradient( to right,  #d8edf8, #4ac0e1);
+  background: linear-gradient(to right, #d8edf8, #4ac0e1);
   text-align: center;
 }
 
-.footer a{
-  text-decoration: none;   
+.footer a {
+  text-decoration: none;
   padding: 5px;
-  }
+}
 
 .footer a:hover {
   color: wheat;
@@ -64,24 +66,24 @@ align-items: center;
 }
 
 /* ========== Home page CSS========== */
-.home-content{
+.home-content {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: 50px;
 }
 
-.home-content .banner-img{
-  width: 55%;  
+.home-content .banner-img {
+  width: 55%;
   padding: 20px;
 }
 
-.banner-img img{
+.banner-img img {
   width: 100%;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
-.home-content .quiz-setup{
+.home-content .quiz-setup {
   width: 45%;
   /* margin-top: 100px; */
   padding: 20px;
@@ -90,28 +92,30 @@ align-items: center;
   align-items: center;
   font-family: Poppins;
   font-weight: 600;
-  color:#4390b4;
+  color: #4390b4;
 }
 
 .home-content .add-inputs {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 100%;    
+  width: 100%;
 }
-.add-inputs .input-field{
+
+.add-inputs .input-field {
   margin-top: 20px;
 
 }
 
 /* ================Quiz Page=============== */
-.quiz-page{
+.quiz-page {
   display: flex;
   flex-direction: column;
   /* justify-content: center;   */
   /* align-items: center; */
 }
-.quiz-page .title{
+
+.quiz-page .title {
   font-size: 20px;
   font-weight: 600;
   text-decoration: none;
@@ -125,37 +129,40 @@ align-items: center;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  padding: 0 20px;
 }
 
 /* ================Question component CSS =============== */
-.question-container{
-  width : 100%;
+.question-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.currentQues-content{
-width: 95%;
-min-height: 350px;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: space-around;
-border: 5px solid grey;
-padding: 20px;
-margin-top: 10px;
-}
-.option-content{
-width: 100%;
-display: flex;
-flex-wrap: wrap;
-flex: 1;
-align-items: center;
-justify-content: space-around;
-margin: 10px;
+
+.currentQues-content {
+  width: 95%;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 5px solid grey;
+  padding: 20px;
+  margin-top: 10px;
 }
 
-.single-option{
+.option-content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.single-option {
   width: 46%;
   height: 50px;
   padding: 15px 20px;
@@ -168,13 +175,14 @@ margin: 10px;
   color: white;
   box-shadow: grey;
 }
-.wrong{
+
+.wrong {
   background-color: red;
   color: white;
   box-shadow: grey;
 }
 
-.quit-nextQues{
+.quit-nextQues {
   display: flex;
   width: 100%;
   /* align-items: center; */
@@ -194,7 +202,7 @@ margin: 10px;
 }
 
 .result-page button {
-  background-color:#4ac0e1;
+  background-color: #4ac0e1;
   color: white;
   border: none;
   border-radius: 5px;
@@ -206,7 +214,7 @@ margin: 10px;
 }
 
 .result-page button:hover {
-  background-color:#4390b4;
+  background-color: #4390b4;
 }
 
 /* ============= LeaderBoard CSS =================== */
@@ -215,12 +223,13 @@ margin: 10px;
   flex-direction: column;
   height: 100vh;
 }
+
 .leaderboard {
   text-align: center;
   margin-top: 50px;
   font-family: poppins;
   text-transform: uppercase;
-  color:#4390b4;
+  color: #4390b4;
 }
 
 .leaderboard h2 {
@@ -252,44 +261,29 @@ margin: 10px;
 }
 
 .sticky-button {
-  margin-top: auto; 
-  padding: 20px; 
+  margin-top: auto;
+  padding: 20px;
 }
 
+@media screen and (max-width:768px) {
+  .home-content {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .home-content .banner-img {
+    width: 80%;
+    margin: 0px;
+    padding: 8px;
+  }
+  .banner-img img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .home-content .quiz-setup {
+    width: 90%;
+  }
 
-
-
-
-
-
-
-
-@media screen and (max-width:768px){
-
-  .home-content{
-  flex-direction: column-reverse;
-  align-items: center;
-}
-
-.home-content .banner-img{
-  width: 80%;  
-  margin: 0px;
-  padding: 8px;
- 
-}
-
-.banner-img img{
-  width: 100%;
-  object-fit: cover; 
-}
-
-.home-content .quiz-setup{
-  width: 90%;
-  
-}
-
-.single-option{
-  width: 100%;  
-}
-
+  .single-option {
+    width: 100%;
+  }
 }

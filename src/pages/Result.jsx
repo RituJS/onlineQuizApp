@@ -24,7 +24,7 @@ const Result = (() => {
 
   return (
     <div className="result-page">
-      <h2>{name}'s Score: {score} --{categoryName}</h2>
+      <h2>{name}'s Score: {score} Categories: {categoryName}</h2>
       <button onClick={() => navigate('/leaderboard')}>View Leaderboard</button>
     </div>
   );

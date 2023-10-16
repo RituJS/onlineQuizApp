@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom/dist';
+import { useNavigate } from 'react-router-dom';
 import '../../src/App.css';
 
 const QuestionComp = ({ currentQues, setCurrentQues, questions, options, correctAns, score, setScore, setQuestions }) => {
