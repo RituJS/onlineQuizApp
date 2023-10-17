@@ -27,6 +27,8 @@ const Quiz = () => {
     };
   }, []);
 
+  
+
   // Navigate to home when refreshed the page and questions not received
   useEffect(() => {
     if (!questions) {
@@ -55,14 +57,8 @@ const Quiz = () => {
               <span>Score : {score}</span>
             </div>
             <QuestionComp
-              // currentQues={currentQues}
-              // setCurrentQues={setCurrentQues}
-              // questions={questions}
               options={options}
               correctAns={questions[currentQues].correct_answer}
-              // score={score}
-              // setScore={setScore}
-              // setQuestions={setQuestions}
             />
           </>
         ) : (

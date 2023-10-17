@@ -24,7 +24,6 @@ const Home = () => {
     } else setError(false);
     const allQuestion = await fetchQuiz(category, level);
     updateQuizValue({questions : allQuestion})
-    // setQuestions(allQuestion)
     navigate("/quiz");
   }
 

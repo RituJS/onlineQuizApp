@@ -25,6 +25,8 @@ const Result = () => {
     }
   }, [name, score, category, categoryName]);
 
+  
+
   return (
     <div className="result-page">
       <h2>{name}'s Score: {score} Categories: {categoryName}</h2>

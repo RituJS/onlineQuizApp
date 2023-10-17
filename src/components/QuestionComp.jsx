@@ -7,21 +7,18 @@ import { useQuizContext } from '../api/QuizContext';
 
 const QuestionComp = ({ options, correctAns }) => {
     const { quizValue, updateQuizValue  } = useQuizContext();
-    const { name, currentQues, setCurrentQues, questions, setScore, setQuestions} = quizValue;
+    const { currentQues, questions} = quizValue;
 
     const [selected, setSelected] = useState();
     const [error, setError] = useState(false);
     const [timers, setTimers] = useState([]); // Array to store timers for each question
     const navigate = useNavigate();
 
-    // console.log("option correctans===========", options, correctAns)
-
-    // console.log("name, ques=========quiz 2========", name, questions)
     // This useEffect runs whenever questions change or component mount.
     useEffect(() => {
         const initialTimers = questions.map(() => 60); // 60 seconds (1 minute) for each question
         setTimers(initialTimers);
-    }, [questions]);
+    }, [questions]);    
 
     // update timers every second
     useEffect(() => {
@@ -53,14 +50,12 @@ const QuestionComp = ({ options, correctAns }) => {
         return () => {
             clearInterval(interval);
         };
-    }, [currentQues, timers, navigate, setCurrentQues]);
+    }, [currentQues, timers, navigate]);
 
 
     //changing the color of the correct answer to green 
     //else if  changing the color of the wrong answer to red 
     // if the answer is wrong then color the correct answer with green color
-
-
     const handleSelect = (i) => {
         if (selected === i && selected === correctAns) {
             return 'select';
@@ -94,8 +89,9 @@ const QuestionComp = ({ options, correctAns }) => {
 
     //   handle the quit button
     const handleQuit = () => {
-        // updateQuizValue({currentQues: 0});
+        updateQuizValue({currentQues: 0});
         // setQuestions([]);
+        updateQuizValue({score: 0});
         // setScore(0);
     };
 
